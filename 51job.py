@@ -22,7 +22,7 @@ def get_content(page):
     return html
 #中文在可迭代对象里就是unicode编码
 def get(html):
-    reg = re.compile(r'class="t1 ">.*?<a target="_blank" title="(.*?)".*?<span class="t2"><a target="_blank" title="(.*?)".*?<span class="t3">(.*?)</span>.*?<span class="t4">(.*?)</span>',re.S)
+    reg = re.compile(r'class="t1 ">.*?<a target="_blank" title="(.*?)".*?<span class="t2"><a target="_blank" title="(.*?)".*?<span class="t3">(.*?)</span>.*?<span class="t4">(.*?)</span>.*?<span class="t5">(.*?)</span>',re.S)
     items = re.findall(reg,html)
     # print items #列表
     return items
@@ -35,5 +35,6 @@ for j in range(1,10):
             '公司':i[1],
             '地区':i[2],
             '薪资':i[3],
+            '发布日期':i[4],
         }
         sheet_tab.insert(data)
