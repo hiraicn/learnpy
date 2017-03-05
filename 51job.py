@@ -7,7 +7,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8') #代表输出的内容是utf-8
 
 client = pymongo.MongoClient('localhost',27017)
-dbName = '51job'
+dbName = 'qcwy'
 dbTable ='job'
 tab = client[dbName][dbTable]
 
