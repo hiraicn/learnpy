@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import urllib,re
-import sys
 import pymongo
-reload(sys)
-sys.setdefaultencoding('utf-8') #设置输出的内容是utf-8
+
 
 client = pymongo.MongoClient('localhost',27017)
 dbName = 'qcwy'
