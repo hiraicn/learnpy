@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import urllib,re
+import requests,re
 import pymongo
 
 
@@ -11,9 +11,9 @@ tab = client[dbName][dbTable]
 
 def get_content(page):
     url = 'http://search.51job.com/jobsearch/search_result.php?fromJs=1&jobarea=180200%2C00&district=000000&funtype=0000&industrytype=00&issuedate=9&providesalary=99&keyword=python&keywordtype=2&curr_page={}&lang=c&stype=1&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&lonlat=0%2C0&radius=-1&ord_field=0&list_type=0&fromType=14&dibiaoid=0&confirmdate=9'.format(page)
-    a = urllib.urlopen(url) #打开网址
-    html = a.read()
-    html = html.decode('gbk')
+    a = requests.get(url) #打开网址
+    a.encoding = 'gbk'
+    html = a.text
     return html
 
 def get(html):
