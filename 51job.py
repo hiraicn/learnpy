@@ -10,7 +10,7 @@ dbTable ='job'
 tab = client[dbName][dbTable]
 
 def get_content(page):
-    url = 'http://search.51job.com/jobsearch/search_result.php?fromJs=1&jobarea=180200%2C00&district=000000&funtype=0000&industrytype=00&issuedate=9&providesalary=99&keyword=python&keywordtype=2&curr_page={}&lang=c&stype=1&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&lonlat=0%2C0&radius=-1&ord_field=0&list_type=0&fromType=14&dibiaoid=0&confirmdate=9'.format(page)
+    url = 'http://search.51job.com/list/000000,000000,0000,00,9,99,python,2,{}.html?lang=c&stype=1&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&lonlat=0%2C0&radius=-1&ord_field=0&confirmdate=9&fromType=14&dibiaoid=0&address=&line=&specialarea=00&from=&welfare='.format(page)
     a = requests.get(url) #打开网址
     a.encoding = 'gbk'
     html = a.text
@@ -20,8 +20,8 @@ def get(html):
     reg = re.compile(r'class="t1 ">.*?<a target="_blank" title="(.*?)".*?href="(.*?)".*?<span class="t2"><a target="_blank" title="(.*?)".*?<span class="t3">(.*?)</span>.*?<span class="t4">(.*?)</span>.*?<span class="t5">(.*?)</span>',re.S)
     items = re.findall(reg,html)
     return items
-
-for j in range(1,16): #选择爬取页数范围
+get(get_content(1))
+for j in range(1,20): #选择爬取页数范围
     html = get_content(j) #获取源码
     for i in get(html):
         data = {
@@ -33,3 +33,4 @@ for j in range(1,16): #选择爬取页数范围
             '发布日期':i[5],
         }
         tab.insert(data)
+
